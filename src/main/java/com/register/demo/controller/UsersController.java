@@ -24,14 +24,15 @@ public class UsersController {
 		model.setViewName("users/login");
 		return model;
 	}
-	@RequestMapping(value= {"/signup"},method=RequestMethod.GET)
-	public ModelAndView signup() {
-		ModelAndView model = new ModelAndView();
-		Users users = new Users();
-		model.addObject("users",users);
-		model.setViewName("users/signup");
-		return model;
-	}
+	@RequestMapping(value= {"/signup"}, method=RequestMethod.GET)
+	 public ModelAndView signup() {
+	  ModelAndView model = new ModelAndView();
+	  Users users = new Users();
+	  model.addObject("users", users);
+	  model.setViewName("users/signup");
+	  
+	  return model;
+	 }
 	@RequestMapping(value= {"/signup"},method=RequestMethod.POST)
 	public ModelAndView createUser(@Valid Users users,BindingResult bindingResult) {
 		ModelAndView model = new ModelAndView();

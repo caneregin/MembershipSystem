@@ -24,8 +24,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
  @Autowired
  private DataSource dataSource;
  
- private final String USERS_QUERY = "select email, password, active from user where email=?";
- private final String ROLES_QUERY = "select u.email, r.role from user u inner join user_role ur on (u.id = ur.user_id) inner join role r on (ur.role_id=r.role_id) where u.email=?";
+ private final String USERS_QUERY = "select email, pw, actives from users where email=?";
+ private final String ROLES_QUERY = "select u.email, r.roles from users u inner join users_role ur on (u.id = ur.users_id) inner join roles r on (ur.roles_id=r.roles_id) where u.email=?";
 
  @Override
  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -42,12 +42,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
    .antMatchers("/").permitAll()
    .antMatchers("/login").permitAll()
    .antMatchers("/signup").permitAll()
-   .antMatchers("/home/**").hasAuthority("ADMIN").anyRequest()
+   .antMatchers("/home/**").hasAuthority("admin").anyRequest()
    .authenticated().and().csrf().disable()
    .formLogin().loginPage("/login").failureUrl("/login?error=true")
    .defaultSuccessUrl("/home/home")
    .usernameParameter("email")
-   .passwordParameter("password")
+   .passwordParameter("pw")
    .and().logout()
    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
    .logoutSuccessUrl("/")

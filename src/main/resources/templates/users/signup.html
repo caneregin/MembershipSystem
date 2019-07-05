@@ -10,7 +10,7 @@
 </head>
 <body>
  <div class="container">
-     <form class="form-horizontal" role="form" method="POST" th:action="@{/signup}" th:object="${user}">
+     <form class="form-horizontal" role="form" method="POST" th:action="@{/signup}" th:object="${users}">
       <div class="row">
              <div class="col-md-3"></div>
              <div class="col-md-6">
@@ -75,20 +75,20 @@
          </div>
          <div class="row">
              <div class="col-md-3 field-label-responsive">
-                 <label for="password">Password</label>
+                 <label for="pw">pw</label>
              </div>
              <div class="col-md-6">
                  <div class="form-group has-danger">
                      <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                          <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
-                         <input type="password" th:field="*{password}" class="form-control" id="password"
-                                placeholder="Password" required>
+                         <input type="password" th:field="*{pw}" class="form-control" id="pw"
+                                placeholder="pw" required>
                      </div>
                  </div>
              </div>
              <div class="col-md-3">
                  <div class="form-control-feedback">
-                         <span class="text-danger align-middle" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
+                         <span class="text-danger align-middle" th:if="${#fields.hasErrors('pw')}" th:errors="*{pw}">
                          </span>
                  </div>
              </div>
