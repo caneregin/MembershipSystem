@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.register.demo.model.Roles;
 import com.register.demo.model.Users;
 import com.register.demo.service.UsersService;
 
@@ -57,9 +58,30 @@ public class UsersController {
 		ModelAndView model = new ModelAndView();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Users users = usersService.findUsersByEmail(auth.getName());
+		//Users usersroles = usersService.findUsersByRoles_id(auth.getName());
 		model.addObject("usersName",users.getFirstname()+""+users.getLastname());
-		model.setViewName("home/home");
+		//model.addObject("usersName",usersroles.getRoles());
+		//Users r_1 = usersService.findUsersByRoles_id("admin");
+		//Users r_2 = usersService.findUsersByRoles_id("yetki1");
+		//Users r_3 = usersService.findUsersByRoles_id("yetki2");
+		System.out.println("users ="+users);
+		//System.out.println("users roles ="+usersroles);
+		System.out.println(users.getFirstname());
+		System.out.println(users.getLastname());
+		System.out.println(users.getEmail());
+		System.out.println(users.getPw());
+		System.out.println(users.getActives());
+		System.out.println(users.getRoles());
+		
+		if(users.getFirstname().equals("yetkibir")) {
+			model.setViewName("home/yetki1");
+			return model;
+		}
+		else {
+		model.setViewName("home/yetki2");
 		return model;
+	}
+		
 	}
 	@RequestMapping(value= {"/access_denied"},method=RequestMethod.GET)
 	public ModelAndView accessDenied() {
